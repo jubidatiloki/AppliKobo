@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "269011514457",
+    "firebase_url": "https://kobo-f7a9b.firebaseio.com",
+    "project_id": "kobo-f7a9b",
+    "storage_bucket": "kobo-f7a9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269011514457:android:ea17f3a35a11c05d",
+        "android_client_info": {
+          "package_name": "procorp.applikobo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269011514457-s8dphbs0v0nblva926iesq1p3fvv4e14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVCYEB9lJlFaUiJ_hN94DGRgk2jwRmUtU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269011514457:android:1b84f0313f1ba483",
+        "android_client_info": {
+          "package_name": "procorporation.applikobo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269011514457-s8dphbs0v0nblva926iesq1p3fvv4e14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVCYEB9lJlFaUiJ_hN94DGRgk2jwRmUtU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

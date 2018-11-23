@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.MainActivity">
+
+    <Button android:id="@+id/btnListe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:layout_marginTop="80dp"
+        android:text="Liste des parties" />
+
+    <Button android:id="@+id/btnCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Creer partie"
+        android:padding="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/btnListe"/>
+
+    <Button android:id="@+id/btnRegles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Règles du jeu"
+        android:padding="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/btnCreation"/>
+
+</RelativeLayout>

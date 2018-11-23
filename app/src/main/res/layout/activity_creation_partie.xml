@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/creationPartie"
+    tools:context="procorp.applikobo.Controllers.CreationPartie">
+
+
+    <TextView android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Création Partie"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textAlignment="center"/>
+
+    <EditText android:id="@+id/editNomPartie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom de la partie"
+        android:text=""
+        android:layout_below="@id/title"
+        android:layout_marginTop="30dp" />
+
+    <TextView android:id="@+id/tvNbParticipants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/editNomPartie"/>
+
+    <TextView android:id="@+id/participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="participants"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/editNomPartie"
+        android:layout_toRightOf="@id/tvNbParticipants"/>
+
+    <LinearLayout android:id="@+id/linearCheckbox"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/participants"
+        android:layout_above="@id/btnCreer"/>
+
+    <Button android:id="@+id/btnCreer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Créer la partie"
+        android:textColor="@android:color/black"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:padding="15sp"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

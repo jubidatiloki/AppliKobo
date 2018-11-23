@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AppliKobo</string>
+
+    <string name="minimum_password">Mot de passe trop court, 6 caractères minimum</string>
+    <string name="auth_failed">Problème d\'authentification, vérifiez vos informations et votre connexion internet</string>
+    <string name="auth_password">Entez votre mot de passe</string>
+    <string name="auth_email">Entrez votre adresse mail</string>
+    <string name="auth_already_exist">Adresse mail déjà utilisé</string>
+    <string name="auth_internet">Vous devez avoir une connexion internet pour vous authentifier</string>
+    <string name="auth_wrong">Le mot de passe indiqué ne correspond pas à l\'adresse mail</string>
+
+    <string name="exception_auth_already_exist">com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.</string>
+    <string name="exception_auth_internet">com.google.firebase.FirebaseNetworkException: A network error (such as timeout, interrupted connection or unreachable host) has occurred.</string>
+    <string name="exception_auth_wrong">com.google.firebase.auth.FirebaseAuthInvalidCredentialsException: The password is invalid or the user does not have a password.</string>
+
+</resources>

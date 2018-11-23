@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/design_dialog">
+
+    <TextView android:id="@+id/titleDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:text="titre"/>
+
+    <TextView android:id="@+id/messageDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/titleDialog"
+        android:textStyle="normal"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:text="message"/>
+
+    <EditText android:id="@+id/editDialog"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/messageDialog"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:inputType="number" />
+
+    <Button android:id="@+id/btnAnnuler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Annuler"
+        android:textColor="@color/green"
+        android:layout_below="@id/editDialog"
+        android:layout_toLeftOf="@id/center"
+        android:layout_marginTop="40dp"
+        android:background="@null"/>
+
+    <View android:id="@+id/center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true" />
+
+    <Button android:id="@+id/btnModif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier le nom de la poignée"
+        android:textColor="@color/red"
+        android:layout_below="@id/editDialog"
+        android:layout_toRightOf="@id/center"
+        android:layout_marginTop="40dp"
+        android:background="@null"/>
+
+
+
+</RelativeLayout>
