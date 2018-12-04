@@ -10,7 +10,6 @@
         <ImageView android:id="@+id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:padding="10dp"
             android:src="@drawable/ic_back"/>
 
@@ -58,24 +57,27 @@
             android:layout_marginLeft="15dp"
             android:layout_below="@id/btnJoueurs"/>
 
-        <ListView android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/frameJoueurs"
-            android:layout_marginTop="40dp"/>
-
-    <RelativeLayout android:id="@+id/frameScore"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/listView"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content">
-
         <Button android:id="@+id/btnCreerManche"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/frameJoueurs"
             android:text="Nouvelle manche"/>
+
+        <ListView android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btnCreerManche"
+            android:layout_marginTop="40dp"/>
+
+
+    <RelativeLayout android:id="@+id/frameScore"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/listView"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
 
         <TextView android:id="@+id/tvManche"
             android:layout_width="wrap_content"

@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="procorp.applikobo.Controllers.ListePartie">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"/>
+
+    <TextView android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Liste des parties de kobo"
+        android:layout_toRightOf="@id/imgBack"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textAlignment="center"/>
+
+
+    <TextView android:id="@+id/tvVide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aucune partie pour le moment"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:visibility="gone"/>
+
+    <ListView android:id="@+id/listPartie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="40dp"/>
+
+</RelativeLayout>

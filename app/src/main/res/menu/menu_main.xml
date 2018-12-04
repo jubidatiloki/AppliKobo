@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/nav_nouvelle_partie"
+        android:title="Nouvelle partie" />
+
+    <item
         android:id="@+id/nav_parametres"
         android:title="Paramètres" />
 

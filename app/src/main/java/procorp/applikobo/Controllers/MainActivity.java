@@ -46,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnListe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DetailPartie.class);
-                intent.putExtra("nomPartie", "partie1");
-                startActivity(intent);
-                //startActivity(new Intent(MainActivity.this, ListePartie.class));
+                startActivity(new Intent(MainActivity.this, ListePartie.class));
             }
         });
 
@@ -89,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_parametres) {
+        if(id == R.id.nav_nouvelle_partie){
+            startActivity(new Intent(MainActivity.this, CreationPartie.class));
+        }else if (id == R.id.nav_parametres) {
             Toast.makeText(this, "Aucun paramètre pour le moment", Toast.LENGTH_LONG).show();
             //getFragmentManager().beginTransaction().replace(R.id.content_frame, new FragmentProfilModifier()).commit();
         }else if(id == R.id.nav_deconnexion){

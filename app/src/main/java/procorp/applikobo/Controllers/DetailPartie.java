@@ -1,16 +1,14 @@
 package procorp.applikobo.Controllers;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -111,7 +109,19 @@ public class DetailPartie extends AppCompatActivity {
                 mancheActuelle = listManches.get(position).getNumManche();
                 tvManche.setText("Manche " + listManches.get(position).getNumManche());
                 frameScore.setVisibility(View.VISIBLE);
-                imgBack.setVisibility(View.VISIBLE);
+                imgBack.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        frameScore.setVisibility(View.GONE);
+                        listViewManche.setVisibility(View.VISIBLE);
+                        imgBack.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(DetailPartie.this, ListePartie.class));
+                            }
+                        });
+                    }
+                });
                 listViewManche.setVisibility(View.GONE);
             }
         });
@@ -121,7 +131,7 @@ public class DetailPartie extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //dialog d'ajout de pts pour le joueur
                 dialogAjoutPoints(listScores.get(position), Integer.toString(mancheActuelle));
-                Toast.makeText(DetailPartie.this, "click sur le score de " + listScores.get(position).getPseudo(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailPartie.this, "ajout des points effectué pour " + listScores.get(position).getPseudo(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,7 +139,8 @@ public class DetailPartie extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //dialog de set des pts pour le joueur (reset a 50 ou erreur de saisie)
-                Toast.makeText(DetailPartie.this, "long click sur le score de " + listScores.get(position).getPseudo(), Toast.LENGTH_SHORT).show();
+                dialogSetPoints(listScores.get(position), Integer.toString(mancheActuelle));
+                Toast.makeText(DetailPartie.this, "modification des points effectuée pour " + listScores.get(position).getPseudo(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -137,15 +148,14 @@ public class DetailPartie extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imgBack.setVisibility(View.GONE);
-                frameScore.setVisibility(View.GONE);
-                listViewManche.setVisibility(View.VISIBLE);
+                startActivity(new Intent(DetailPartie.this, ListePartie.class));
             }
         });
 
         btnCreerManche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nouvelleManche();
                 Toast.makeText(DetailPartie.this, "Création d'une manche bientot", Toast.LENGTH_SHORT).show();
             }
         });
@@ -187,11 +197,11 @@ public class DetailPartie extends AppCompatActivity {
                                     tvJoueur.setTextColor(getResources().getColor(R.color.black));
 
                                     frameJoueurs.addView(tvJoueur);
-                                    Log.e("listJoueurs", listJoueurs.get(i));
                                 }
                             }
                             if (childPartie.getKey().equals("manches")) {
                                 for (DataSnapshot manches : childPartie.getChildren()) {
+                                    Log.e(manches.getKey(), manches.getValue().toString());
                                     listScores.clear();
                                     listLabelManches.add("Manche " + manches.getKey());
                                     for(DataSnapshot scores : manches.getChildren()){
@@ -205,10 +215,11 @@ public class DetailPartie extends AppCompatActivity {
                                             txt += "\n" + listManches.get(i).getScores().get(j);
                                         }
                                     }
-                                    Log.e("manches", txt);
                                 }
-                                adapterManche.notifyDataSetChanged();
                             }
+                            adapterManche.notifyDataSetChanged();
+                            for(int i = 0; i < listManches.size(); i++)
+                                Log.e("manches", listManches.get(i).toString());
                         }
                     }
 
@@ -248,11 +259,14 @@ public class DetailPartie extends AppCompatActivity {
                 int totalPts = score.getPoints() + Integer.parseInt(editScoreSuppl.getText().toString());
                 manches.child(numManche).child(score.getPseudo()).setValue(Integer.toString(totalPts));
                 Toast.makeText(DetailPartie.this, "Score de " + score.getPseudo() + " modifié", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+
             }
         });
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(DetailPartie.this, "Modification annulée", Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
             }
         });
@@ -271,4 +285,58 @@ public class DetailPartie extends AppCompatActivity {
 
     }
 
+    private void dialogSetPoints(final Score score, final String numManche){
+        AlertDialog.Builder builder = new AlertDialog.Builder(DetailPartie.this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.raw_dialog_score, null);
+        final EditText editScore = dialogView.findViewById(R.id.editDialog);
+        TextView tvTitle = dialogView.findViewById(R.id.titleDialog);
+        TextView tvMessage = dialogView.findViewById(R.id.messageDialog);
+        Button btnAnnuler = dialogView.findViewById(R.id.btnAnnuler);
+        Button btnModif = dialogView.findViewById(R.id.btnModif);
+        builder.setView(dialogView);
+        final AlertDialog alertDialog = builder.create();
+        tvTitle.setText("Score de " + score.getPseudo());
+        tvMessage.setText("Définissez le nombre de points d'un utilisateur");
+        btnModif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                manches.child(numManche).child(score.getPseudo()).setValue(editScore.getText().toString());
+                Toast.makeText(DetailPartie.this, "Score de " + score.getPseudo() + " modifié", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+
+            }
+        });
+        btnAnnuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailPartie.this, "Modification annulée", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                getPartie();
+            }
+        });
+
+
+        alertDialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.design_dialog));
+
+    }
+
+    private void nouvelleManche(){
+        ArrayList<Score> listScore = listManches.get(listManches.size()-1).getScores();
+        int total = listManches.size() + 1;
+        for(int i = 0; i < listScore.size(); i++) {
+            manches.child(String.valueOf(total)).child(listScore.get(i).getPseudo()).setValue(listScore.get(i).getPoints());
+        }
+        Intent intent = new Intent(DetailPartie.this, DetailPartie.class);
+        intent.putExtra("nomPartie", nomPartie);
+        startActivity(intent);
+    }
 }

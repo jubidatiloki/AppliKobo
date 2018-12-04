@@ -14,7 +14,6 @@ import procorp.applikobo.R;
 
 public class ScoreAdapter extends ArrayAdapter<Score>{
 
-    //tweets est la liste des models à afficher
     public ScoreAdapter(Context context, List<Score> scoreList) {
         super(context, 0, scoreList);
     }
@@ -34,10 +33,8 @@ public class ScoreAdapter extends ArrayAdapter<Score>{
             convertView.setTag(viewHolder);
         }
 
-        //getItem(position) va récupérer l'item [position] de la List<Tweet> tweets
         Score score = getItem(position);
 
-        //il ne reste plus qu'à remplir notre vue
         viewHolder.pseudo.setText(score.getPseudo());
         viewHolder.score.setText(Integer.toString(score.getPoints()));
 

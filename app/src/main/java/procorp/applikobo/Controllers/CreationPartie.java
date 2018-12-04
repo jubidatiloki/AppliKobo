@@ -53,6 +53,8 @@ public class CreationPartie extends AppCompatActivity {
     public TextView tvNbParticipants;
     public LinearLayout linearCheckbox;
 
+    private ArrayList<String> nomPartieDejaUtilise = new ArrayList<>();
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,15 @@ public class CreationPartie extends AppCompatActivity {
                 if (TextUtils.isEmpty(nomPartie)) {
                     Toast.makeText(getApplicationContext(), "Le nom de la partie n'a pas été renseigné", Toast.LENGTH_SHORT).show();
                     return;
+                }
+
+                for(int i = 0; i < nomPartieDejaUtilise.size(); i++){
+                    Log.e("nompartie-nomDejaUsed", nomPartie + " - " + nomPartieDejaUtilise.get(i));
+                    if(nomPartie.equals(nomPartieDejaUtilise.get(i))){
+                        Toast.makeText(CreationPartie.this, "Nom de partie deja utilisé", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                 }
 
                 StringBuffer stringBuffer = new StringBuffer();
@@ -99,11 +110,32 @@ public class CreationPartie extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     listUser.add(new User(dataSnapshot1.getKey(),dataSnapshot1.getValue(String.class)));
                 }
+
+
                 Log.e("listUser size", listUser.size() + "");
                 for(int i = 0; i<listUser.size(); i++){
                     Log.e("user", listUser.get(i).toString());
                 }
                 creationCheckbox();
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+
+        readData(parties, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for (DataSnapshot parties : dataSnapshot.getChildren()) {
+                    nomPartieDejaUtilise.add(parties.getKey());
+                }
             }
 
             @Override
